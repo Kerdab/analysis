@@ -8,7 +8,7 @@ using namespace std;
 int main(){
 
   int i = 0;
-  char str[] = "the fact is, I like this fact example.";
+  char str[] = "I am an example. I am an example";
   char word[] = "I";
   char *p;
   int theCount=0, factCount=0, iCount=0;
