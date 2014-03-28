@@ -9,24 +9,18 @@ using namespace std;
 FILE *Fp;
 
 
-typedef struct speech_Num{
-	int wordCount, sentenceCount, lineCount, peace;
-    
-
-} SPEECH_NUM;
-
-
 void printTableHeaders(){
 
-  	printf("\n");
+    printf("\n");
   	printf("Speech\n");
-  	printf("YEAR  Words  \tSentences  Paragraphs\tAvg Word Length\t Avg Sentence Length(in words)");
-    printf("\t I  I've  I'll  me  my\tmine\tmyself");
-    printf("\twe\twe've\twe'll\tus\tour\tours\tourselves\n");
-    printf("====  ------ \t---------  ----------\t---------------\t -----------------------------");
-    printf("\t--- ----  ----  --  --\t----\t------");
-    printf("\t--\t-----\t-----\t--\t---\t----\t---------\n");
-
+  	printf("YEAR  peace freedom  liberty  america  american  country  ");
+    printf("nation  ally  allies  people  defend  ");
+    printf("interest  interests  commitment  government  responsibility  ");
+    printf("constitution    slave  slavery  equal\n");
+    printf("====  ----- -------  ------- --------  --------  ------   ");
+    printf("------  ----  ------  ------  ------  ");
+    printf("--------  ---------  ----------  ----------  --------------  ");
+    printf("------------    -----  -------  -----\n");
 }
 
 
@@ -68,7 +62,7 @@ void counter( const char* fileName){
 	   exit( -1);
 	}
 
-	//Loop counts number of words, sentences, and paragraphs
+	//Loop counts number of each word
     while( (ch = fgetc(Fp)) != EOF){
 
 		speech[k] = tolower(ch); //Converts chars to lowercase
@@ -144,7 +138,6 @@ void counter( const char* fileName){
 
 int main(){
 
-  SPEECH_NUM speechNum[MAX_SPCH];
   const char* fileName[] = //File Names
    { "1789.txt", "1793.txt", "1797.txt", "1801.txt", "1805.txt", 
 	 "1809.txt", "1813.txt", "1817.txt", "1821.txt", 
@@ -164,18 +157,9 @@ int main(){
 
    int i;
 
-    printf("\n");
-  	printf("Speech\n");
-  	printf("YEAR  peace freedom  liberty  america  american  country  ");
-    printf("nation  ally  allies  people  defend  ");
-    printf("interest  interests  commitment  government  responsibility  ");
-    printf("constitution    slave  slavery  equal\n");
-    printf("====  ----- -------  ------- --------  --------  ------   ");
-    printf("------  ----  ------  ------  ------  ");
-    printf("--------  ---------  ----------  ----------  --------------  ");
-    printf("------------    -----  -------  -----\n");
+    printTableHeaders();
 
-    for(i=0; i<57; i++){
+    for(i=0; i<MAX_SPCH; i++){
 
     	counter( fileName[i]);
     }
