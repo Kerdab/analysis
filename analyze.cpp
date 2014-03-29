@@ -173,6 +173,7 @@ void countAndPrintInfo(SPEECH_NUM speechNum[], int i, const char* fileName){
     		speechNum[i].usCount, speechNum[i].ourCount,
     		speechNum[i].oursCount, speechNum[i].ourselvesCount);
 
+    //Calculate ratio of singular pronouns to plural pronouns
     float ratioSingToPlur;
     int totalSing, totalPlur;
 
