@@ -13,14 +13,19 @@ void printTableHeaders(){
 
     printf("\n");
   	printf("Speech\n");
-  	printf("YEAR  peace freedom  liberty  america  american  country  ");
+/*  	printf("YEAR  peace freedom  liberty  america  american  country  ");
     printf("nation  ally  allies  people  defend  ");
     printf("interest  interests  commitment  government  responsibility  ");
-    printf("constitution    slave  slavery  equal\n");
-    printf("====  ----- -------  ------- --------  --------  ------   ");
+    printf("constitution    slave  slavery  equal\n"); */
+    printf("YEAR   social  progressive  capitalism  economy  tax  women  families  ");
+    printf("business  businesses  jobs  government  unemployment\n");
+
+/*    printf("====  ----- -------  ------- --------  --------  ------   ");
     printf("------  ----  ------  ------  ------  ");
     printf("--------  ---------  ----------  ----------  --------------  ");
-    printf("------------    -----  -------  -----\n");
+    printf("------------    -----  -------  -----\n"); */
+    printf("====   ------  -----------  ----------  -------  ---  -----  --------  ");
+    printf("-------  -----------  ----  ----------  ------------\n");
 }
 
 
@@ -35,6 +40,8 @@ void counter( const char* fileName){
   int people=0, freedom=0, country=0, nation=0, defend=0, commitment=0;
   int liberty=0, ally=0, allies=0, interest=0, interests=0;
   int constitution=0, slave=0, slavery=0, equal=0;
+  int social=0, capitalism=0, economy=0, tax=0, progressive=0, women=0;
+  int business=0, businesses=0, families=0, jobs=0, unemployment=0;;
 
   	//To get the speech year
   	strncpy(speechYear, fileName, sizeof(speechYear)); 
@@ -119,10 +126,33 @@ void counter( const char* fileName){
 			slavery++;
 		if(strcmp( token, "equal") == 0)
 			equal++;
+		if(strcmp( token, "social") == 0)
+			social++;
+		if(strcmp( token, "progressive") == 0)
+			progressive++;
+		if(strcmp( token, "capitalism") == 0)
+			capitalism++;
+		if(strcmp( token, "economy") == 0)
+			economy++;
+		if(strcmp( token, "tax") == 0)
+			tax++;
+
+		if(strcmp( token, "women") == 0)
+			women++;
+		if(strcmp( token, "families") == 0)
+			families++;
+		if(strcmp( token, "business") == 0)
+			business++;
+		if(strcmp( token, "businesses") == 0)
+			businesses++;
+		if(strcmp( token, "jobs") == 0)
+			jobs++;
+		if(strcmp( token, "unemployment") == 0)
+			unemployment++;
 
 		token = strtok( NULL, " ,.");
 	}
-
+	/*
 	printf("%s\t%d\t%d\t%d\t%d\t   %d\t   %d", speechYear,
 		peace, freedom, liberty, america, american, country);
 	printf("\t   %d\t   %d\t %d\t %d\t  %d", 
@@ -131,6 +161,11 @@ void counter( const char* fileName){
 		interest, interests, commitment, government, responsibility);
 	printf("\t\t %d\t\t%d\t%d\t%d\n",
 		constitution, slave, slavery, equal);
+	*/
+	printf("%s  %7d %7d %14d %7d %7d ", speechYear,
+		social, progressive, capitalism, economy, tax);
+	printf("%4d %7d %7d %10d %10d %7d %10d\n",
+		women, families, business, businesses, jobs, government, unemployment);
 
 	free( speech); //Frees allocated memory
 }
