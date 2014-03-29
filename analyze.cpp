@@ -18,15 +18,14 @@ typedef struct speech_Num{
 
 void printTableHeaders(){
 
-  	printf("\n");
+	printf("\n");
   	printf("Speech\n");
-  	printf("YEAR  Words  \tSentences  Paragraphs\tAvg Word Length\t Avg Sentence Length(in words)");
-    printf("\t I  I've  I'll  me  my\tmine\tmyself");
-    printf("\twe\twe've\twe'll\tus\tour\tours\tourselves\n");
-    printf("====  ------ \t---------  ----------\t---------------\t -----------------------------");
-    printf("\t--- ----  ----  --  --\t----\t------");
-    printf("\t--\t-----\t-----\t--\t---\t----\t---------\n");
-
+  	printf("YEAR\tWords\tSentences\tParagraphs\tAvg Word Length\tAvg Sentence Length(in words)");
+    printf("\t I\tI've\tI'll\tme\tmy\tmine\tmyself");
+    printf("\t we\twe've\twe'll\tus\tour\tours\tourselves\n");
+    printf("====\t-----\t---------\t----------\t---------------\t-----------------------------");
+    printf("\t---\t----\t----\t--\t--\t----\t------");
+    printf("\t --\t-----\t-----\t--\t---\t----\t---------\n");
 }
 
 //Counts words, sentences, and paragraphs
@@ -160,18 +159,19 @@ void countAndPrintInfo(SPEECH_NUM speechNum[], int i, const char* fileName){
 	speechNum[i].wordCount++; 
 
 	//Prints all acquired info
-    printf("%s\t%d\t %d\t\t%d\t%f\t\t%f \t\t", speechYear,
+	printf("%s\t %4d\t      %3d\t\t%2d\t      %f\t\t\t   %f\t", speechYear,
    			speechNum[i].wordCount, speechNum[i].sentenceCount, 
    			speechNum[i].parCount, speechNum[i].avgWordLength, 
    			speechNum[i].avgSentLength);
-    printf("%d   %d\t   %d\t%d   %d\t %d\t %d", speechNum[i].iCount, 
+    printf(" %2d\t  %2d\t  %2d\t%2d\t%2d\t  %2d\t   %2d\t", speechNum[i].iCount, 
     		speechNum[i].iveCount, speechNum[i].illCount, 
     		speechNum[i].meCount, speechNum[i].myCount,
     		speechNum[i].mineCount, speechNum[i].myselfCount);
-    printf("\t%d\t%d\t%d\t%d\t%d\t%d\t   %d\n", speechNum[i].weCount,
+    printf(" %2d\t   %2d\t   %2d\t%2d\t %2d\t  %2d\t\t%d\n", speechNum[i].weCount,
     		speechNum[i].weveCount, speechNum[i].wellCount,
     		speechNum[i].usCount, speechNum[i].ourCount,
     		speechNum[i].oursCount, speechNum[i].ourselvesCount);
+
 
 	free( speech); //Frees allocated memory
 }
