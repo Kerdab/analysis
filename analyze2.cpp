@@ -19,7 +19,7 @@ void printTableHeaders(){
     printf("constitution    slave  slavery  equal\n"); */
     printf("YEAR   social  progressive  capitalism  economy  tax  women  families  ");
     printf("business  businesses  jobs  government  unemployment  ");
-    printf("god  work  future  \n");
+    printf("god  work  future  leadership  \n");
 
 /*    printf("====  ----- -------  ------- --------  --------  ------   ");
     printf("------  ----  ------  ------  ------  ");
@@ -27,7 +27,7 @@ void printTableHeaders(){
     printf("------------    -----  -------  -----\n"); */
     printf("====   ------  -----------  ----------  -------  ---  -----  --------  ");
     printf("-------  -----------  ----  ----------  ------------  ");
-    printf("---  ----  ------  \n");
+    printf("---  ----  ------  ----------  \n");
 }
 
 
@@ -45,6 +45,7 @@ void counter( const char* fileName){
   int social=0, capitalism=0, economy=0, tax=0, progressive=0, women=0;
   int business=0, businesses=0, families=0, jobs=0, unemployment=0;
   int god=0, work=0, future=0;
+  int leadership=0;
 
   	//To get the speech year
   	strncpy(speechYear, fileName, sizeof(speechYear)); 
@@ -158,6 +159,8 @@ void counter( const char* fileName){
 			work++;
 		if(strcmp( token, "future") == 0)
 			future++;
+		if(strcmp( token, "leadership") == 0)
+			leadership++;
 
 		token = strtok( NULL, " ,.");
 	}
@@ -175,8 +178,8 @@ void counter( const char* fileName){
 		social, progressive, capitalism, economy, tax);
 	printf("%4d %7d %7d %10d %10d %7d %14d ",
 		women, families, business, businesses, jobs, government, unemployment);
-	printf("%8d %6d %7d\n",
-		god, work, future);
+	printf("%8d %6d %7d %10d\n",
+		god, work, future, leadership);
 
 	free( speech); //Frees allocated memory
 }
