@@ -18,14 +18,16 @@ void printTableHeaders(){
     printf("interest  interests  commitment  government  responsibility  ");
     printf("constitution    slave  slavery  equal\n"); */
     printf("YEAR   social  progressive  capitalism  economy  tax  women  families  ");
-    printf("business  businesses  jobs  government  unemployment\n");
+    printf("business  businesses  jobs  government  unemployment  ");
+    printf("god  work  future  \n");
 
 /*    printf("====  ----- -------  ------- --------  --------  ------   ");
     printf("------  ----  ------  ------  ------  ");
     printf("--------  ---------  ----------  ----------  --------------  ");
     printf("------------    -----  -------  -----\n"); */
     printf("====   ------  -----------  ----------  -------  ---  -----  --------  ");
-    printf("-------  -----------  ----  ----------  ------------\n");
+    printf("-------  -----------  ----  ----------  ------------  ");
+    printf("---  ----  ------  \n");
 }
 
 
@@ -41,7 +43,8 @@ void counter( const char* fileName){
   int liberty=0, ally=0, allies=0, interest=0, interests=0;
   int constitution=0, slave=0, slavery=0, equal=0;
   int social=0, capitalism=0, economy=0, tax=0, progressive=0, women=0;
-  int business=0, businesses=0, families=0, jobs=0, unemployment=0;;
+  int business=0, businesses=0, families=0, jobs=0, unemployment=0;
+  int god=0, work=0, future=0;
 
   	//To get the speech year
   	strncpy(speechYear, fileName, sizeof(speechYear)); 
@@ -149,6 +152,12 @@ void counter( const char* fileName){
 			jobs++;
 		if(strcmp( token, "unemployment") == 0)
 			unemployment++;
+		if(strcmp( token, "god") == 0)
+			god++;
+		if(strcmp( token, "work") == 0)
+			work++;
+		if(strcmp( token, "future") == 0)
+			future++;
 
 		token = strtok( NULL, " ,.");
 	}
@@ -164,8 +173,10 @@ void counter( const char* fileName){
 	*/
 	printf("%s  %7d %7d %14d %7d %7d ", speechYear,
 		social, progressive, capitalism, economy, tax);
-	printf("%4d %7d %7d %10d %10d %7d %10d\n",
+	printf("%4d %7d %7d %10d %10d %7d %14d ",
 		women, families, business, businesses, jobs, government, unemployment);
+	printf("%8d %6d %7d\n",
+		god, work, future);
 
 	free( speech); //Frees allocated memory
 }
