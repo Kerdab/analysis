@@ -20,49 +20,49 @@ void printTableHeaders(){
 
 	printf("\n");
   	printf("Speech\n");
-  	printf("YEAR    Words    Sentences    Paragraphs    Avg Word      Avg Sentence ");
-    printf("      I    I've    I'll    me    my    mine    myself");
-    printf("    we    we've    we'll    us    our    ours    ourselves    ratio 'I'/'We'\n");
-    printf("\t\t\t\t\t     Length      Length(in words)\n");
-    printf("====    -----    ---------    ----------    --------    -----------------");
-    printf("    --   ----    ----    --    --    ----    ------");
-    printf("    --    -----    -----    --    ---    ----    ---------    -------------\n");
+  	printf("\t\t\t\t\t\tAvg Word \t  Avg Sentence\n");
+  	printf("YEAR\tWords\tSentences\tParagraphs\t Length \t Length(in words)   \t");
+    printf("Singular Pronouns\t Plural Pronouns\tRatio Singular/Plural\n");
+    printf("====\t-----\t---------\t----------\t--------\t-----------------");
+    printf("\t-----------------\t-----------------\t---------------------\n");
 }
 
 //Counts words, sentences, and paragraphs
 void countAndPrintInfo(SPEECH_NUM speechNum[], int i, const char* fileName){
 
-  char *speech = NULL, ch, *token;
-  int k = 0, size = 0;
-  float alphabetCount=0.0, avgWordLength;
-  //const char *pronouns[] = {"I've", "I'll", "me", "my", "mine", "myself"};
-  char speechYear[4]; 
-  char filePath[25] = "./datafiles/"; 
+	char *speech = NULL, ch, *token;
+	int k = 0, size = 0;
+	float alphabetCount=0.0, avgWordLength;
+	//const char *pronouns[] = {"I've", "I'll", "me", "my", "mine", "myself"};
+	char speechYear[4]; 
+	char filePath[25] = "./datafiles/"; 
+	float ratioSingToPlur;
+	int totalSing, totalPlur;
 
-  	//To get the speech year
-  	strncpy(speechYear, fileName, sizeof(speechYear)); 
-  	//Merges fileName with filePath to give the complete file path
-  	strcat(filePath, fileName); 
+	//To get the speech year
+	strncpy(speechYear, fileName, sizeof(speechYear)); 
+	//Merges fileName with filePath to give the complete file path
+	strcat(filePath, fileName); 
 
 	//Initializing counters
-  	speechNum[i].wordCount=0, 
-  	speechNum[i].sentenceCount=0, 
-  	speechNum[i].lineCount=0, 
-  	speechNum[i].parCount=0;
-  	speechNum[i].iCount=0;
-  	speechNum[i].iveCount=0;
-  	speechNum[i].illCount=0;
-  	speechNum[i].meCount=0;
-  	speechNum[i].myCount=0;
-  	speechNum[i].mineCount=0;
-  	speechNum[i].myselfCount=0;
-  	speechNum[i].weCount=0;
-  	speechNum[i].weveCount=0;
-  	speechNum[i].wellCount=0;
-  	speechNum[i].usCount=0;
-  	speechNum[i].ourCount=0;
-  	speechNum[i].oursCount=0;
-  	speechNum[i].ourselvesCount=0;
+	speechNum[i].wordCount=0, 
+	speechNum[i].sentenceCount=0, 
+	speechNum[i].lineCount=0, 
+	speechNum[i].parCount=0;
+	speechNum[i].iCount=0;
+	speechNum[i].iveCount=0;
+	speechNum[i].illCount=0;
+	speechNum[i].meCount=0;
+	speechNum[i].myCount=0;
+	speechNum[i].mineCount=0;
+	speechNum[i].myselfCount=0;
+	speechNum[i].weCount=0;
+	speechNum[i].weveCount=0;
+	speechNum[i].wellCount=0;
+	speechNum[i].usCount=0;
+	speechNum[i].ourCount=0;
+	speechNum[i].oursCount=0;
+	speechNum[i].ourselvesCount=0;
 
 	Fp = fopen( filePath, "r"); //Reads from file
 
@@ -71,13 +71,13 @@ void countAndPrintInfo(SPEECH_NUM speechNum[], int i, const char* fileName){
 	   exit( -1);
 	}
 	//Counts number of characters in the file
-    while( (fgetc(Fp)) != EOF){
-    		size++;
-    }
-    //Allocate memory according to number of characters in file
-    speech = (char*)malloc(sizeof(char)*(size+1));
+	while( (fgetc(Fp)) != EOF){
+			size++;
+	}
+	//Allocate memory according to number of characters in file
+	speech = (char*)malloc(sizeof(char)*(size+1));
 
-    //Reads from file again to check back from the beginning
+	//Reads from file again to check back from the beginning
 	Fp = fopen( filePath, "r");
 	// Verify input file was found
 	if( Fp == NULL){
@@ -86,8 +86,7 @@ void countAndPrintInfo(SPEECH_NUM speechNum[], int i, const char* fileName){
 	}
 
 	//Loop counts number of words, sentences, and paragraphs
-    while( (ch = fgetc(Fp)) != EOF){
-
+	while( (ch = fgetc(Fp)) != EOF){
 		speech[k] = tolower(ch); //Converts chars to lowercase
 
 		//Counts words
@@ -106,7 +105,8 @@ void countAndPrintInfo(SPEECH_NUM speechNum[], int i, const char* fileName){
 			alphabetCount++;
 
 		k++;
-    }
+	}
+
 	fclose( Fp);   // close input file
 
 	//Breaks the array 'speech' into tokens ignoring spaces, commas, and dots
@@ -146,7 +146,7 @@ void countAndPrintInfo(SPEECH_NUM speechNum[], int i, const char* fileName){
 			speechNum[i].ourselvesCount++;
 
 		token = strtok( NULL, " ,.");	
-    }
+	}
 
 	//Average length of words in each speech
 	speechNum[i].avgWordLength = alphabetCount/(speechNum[i].wordCount); 
@@ -160,33 +160,23 @@ void countAndPrintInfo(SPEECH_NUM speechNum[], int i, const char* fileName){
 	speechNum[i].wordCount++; 
 
 	//Prints all acquired info
-	printf("%s\t %4d\t      %3d\t     %2d\t\t%.2f\t\t   %.2f", speechYear,
-   			speechNum[i].wordCount, speechNum[i].sentenceCount, 
-   			speechNum[i].parCount, speechNum[i].avgWordLength, 
-   			speechNum[i].avgSentLength);
-    printf("     %2d    %2d      %2d     %2d    %2d\t%2d\t %2d\t", speechNum[i].iCount, 
-    		speechNum[i].iveCount, speechNum[i].illCount, 
-    		speechNum[i].meCount, speechNum[i].myCount,
-    		speechNum[i].mineCount, speechNum[i].myselfCount);
-    printf("%2d\t%2d\t %2d\t%2d     %2d      %2d\t    %d", speechNum[i].weCount,
-    		speechNum[i].weveCount, speechNum[i].wellCount,
-    		speechNum[i].usCount, speechNum[i].ourCount,
-    		speechNum[i].oursCount, speechNum[i].ourselvesCount);
+	printf("%s\t %4d\t      %3d\t\t%2d\t   %.2f \t \t   %.2f \t", speechYear,
+				speechNum[i].wordCount, speechNum[i].sentenceCount, 
+				speechNum[i].parCount, speechNum[i].avgWordLength, 
+				speechNum[i].avgSentLength);
+	
 
-    //Calculate ratio of singular pronouns to plural pronouns
-    float ratioSingToPlur;
-    int totalSing, totalPlur;
+	//Calculate ratio of singular pronouns to plural pronouns
+	totalSing = speechNum[i].iCount + speechNum[i].iveCount + speechNum[i].illCount +
+		speechNum[i].meCount + speechNum[i].myCount + speechNum[i].mineCount + speechNum[i].myselfCount;
 
-    totalSing = speechNum[i].iCount + speechNum[i].iveCount + speechNum[i].illCount +
-    	speechNum[i].meCount + speechNum[i].myCount + speechNum[i].mineCount + speechNum[i].myselfCount;
+	totalPlur = speechNum[i].weCount + speechNum[i].weveCount + speechNum[i].wellCount +
+			speechNum[i].usCount + speechNum[i].ourCount + speechNum[i].oursCount + 
+			speechNum[i].ourselvesCount;
 
-    totalPlur = speechNum[i].weCount + speechNum[i].weveCount + speechNum[i].wellCount +
-    		speechNum[i].usCount + speechNum[i].ourCount + speechNum[i].oursCount + 
-    		speechNum[i].ourselvesCount;
+	ratioSingToPlur = (float)totalSing/(float)totalPlur;
 
-    ratioSingToPlur = (float)totalSing/(float)totalPlur;
-
-    printf("\t\t %.2f\n", ratioSingToPlur);
+	printf("\t      %3d \t\t      %3d\t\t\t%3.2f\n", totalSing, totalPlur,ratioSingToPlur);
 
 	free( speech); //Frees allocated memory
 }
