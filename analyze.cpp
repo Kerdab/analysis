@@ -20,12 +20,13 @@ void printTableHeaders(){
 
 	printf("\n");
   	printf("Speech\n");
-  	printf("YEAR    Words    Sentences    Paragraphs    Avg Word Length    Avg Sentence Length(in words)");
-    printf("    I    I've    I'll    me    my    mine    myself");
-    printf("    we    we've    we'll    us    our    ours    ourselves\n");
-    printf("====    -----    ---------    ----------    ---------------    -----------------------------");
+  	printf("YEAR    Words    Sentences    Paragraphs    Avg Word      Avg Sentence ");
+    printf("      I    I've    I'll    me    my    mine    myself");
+    printf("    we    we've    we'll    us    our    ours    ourselves    ratio 'I'/'We'\n");
+    printf("\t\t\t\t\t     Length      Length(in words)\n");
+    printf("====    -----    ---------    ----------    --------    -----------------");
     printf("    --   ----    ----    --    --    ----    ------");
-    printf("    --    -----    -----    --    ---    ----    ---------\n");
+    printf("    --    -----    -----    --    ---    ----    ---------    -------------\n");
 }
 
 //Counts words, sentences, and paragraphs
@@ -159,19 +160,32 @@ void countAndPrintInfo(SPEECH_NUM speechNum[], int i, const char* fileName){
 	speechNum[i].wordCount++; 
 
 	//Prints all acquired info
-	printf("%s\t %4d\t      %3d\t     %2d\t\t  %f\t\t\t  %f\t", speechYear,
+	printf("%s\t %4d\t      %3d\t     %2d\t\t%.2f\t\t   %.2f", speechYear,
    			speechNum[i].wordCount, speechNum[i].sentenceCount, 
    			speechNum[i].parCount, speechNum[i].avgWordLength, 
    			speechNum[i].avgSentLength);
-    printf("%2d    %2d      %2d     %2d    %2d\t  %2d\t    %2d\t", speechNum[i].iCount, 
+    printf("     %2d    %2d      %2d     %2d    %2d\t%2d\t %2d\t", speechNum[i].iCount, 
     		speechNum[i].iveCount, speechNum[i].illCount, 
     		speechNum[i].meCount, speechNum[i].myCount,
     		speechNum[i].mineCount, speechNum[i].myselfCount);
-    printf("   %2d\t   %2d\t    %2d\t   %2d\t  %2d\t  %2d\t       %d\n", speechNum[i].weCount,
+    printf("%2d\t%2d\t %2d\t%2d     %2d      %2d\t    %d", speechNum[i].weCount,
     		speechNum[i].weveCount, speechNum[i].wellCount,
     		speechNum[i].usCount, speechNum[i].ourCount,
     		speechNum[i].oursCount, speechNum[i].ourselvesCount);
 
+    float ratioSingToPlur;
+    int totalSing, totalPlur;
+
+    totalSing = speechNum[i].iCount + speechNum[i].iveCount + speechNum[i].illCount +
+    	speechNum[i].meCount + speechNum[i].myCount + speechNum[i].mineCount + speechNum[i].myselfCount;
+
+    totalPlur = speechNum[i].weCount + speechNum[i].weveCount + speechNum[i].wellCount +
+    		speechNum[i].usCount + speechNum[i].ourCount + speechNum[i].oursCount + 
+    		speechNum[i].ourselvesCount;
+
+    ratioSingToPlur = (float)totalSing/(float)totalPlur;
+
+    printf("\t\t %.2f\n", ratioSingToPlur);
 
 	free( speech); //Frees allocated memory
 }
