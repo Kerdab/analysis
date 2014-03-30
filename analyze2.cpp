@@ -17,16 +17,16 @@ void printTableHeaders(){
     printf("nation  ally  allies  people  defend  ");
     printf("interest  interests  commitment  government  responsibility  ");
     printf("constitution    slave  slavery  equal\n"); */
-    printf("YEAR   social  progressive  capitalism  economy  tax  women  families  ");
-    printf("business  businesses  jobs  government  unemployment  ");
+    printf("YEAR   social  progressive  economy  tax  women  families  ");
+    printf("business  jobs  government  unemployment  ");
     printf("god  work  future  leadership  \n");
 
 /*    printf("====  ----- -------  ------- --------  --------  ------   ");
     printf("------  ----  ------  ------  ------  ");
     printf("--------  ---------  ----------  ----------  --------------  ");
     printf("------------    -----  -------  -----\n"); */
-    printf("====   ------  -----------  ----------  -------  ---  -----  --------  ");
-    printf("-------  -----------  ----  ----------  ------------  ");
+    printf("====   ------  -----------  -------  ---  -----  --------  ");
+    printf("-------   ----  ----------  ------------  ");
     printf("---  ----  ------  ----------  \n");
 }
 
@@ -148,7 +148,7 @@ void counter( const char* fileName){
 		if(strcmp( token, "business") == 0)
 			business++;
 		if(strcmp( token, "businesses") == 0)
-			businesses++;
+			business++;
 		if(strcmp( token, "jobs") == 0)
 			jobs++;
 		if(strcmp( token, "unemployment") == 0)
@@ -174,11 +174,11 @@ void counter( const char* fileName){
 	printf("\t\t %d\t\t%d\t%d\t%d\n",
 		constitution, slave, slavery, equal);
 	*/
-	printf("%s  %7d %7d %14d %7d %7d ", speechYear,
-		social, progressive, capitalism, economy, tax);
-	printf("%4d %7d %7d %10d %10d %7d %14d ",
-		women, families, business, businesses, jobs, government, unemployment);
-	printf("%8d %6d %7d %10d\n",
+	printf("%s\t   %d\t\t%d\t %d     %d", speechYear,
+		social, progressive, economy, tax);
+	printf("    %2d\t      %2d\t%2d\t%d\t  %2d\t\t%2d",
+		women, families, business, jobs, government, unemployment);
+	printf("    %2d    %2d\t   %2d\t\t%2d\n",
 		god, work, future, leadership);
 
 	free( speech); //Frees allocated memory
