@@ -129,6 +129,11 @@ void initData(SPEECH_NUM &speech, const char* fileName){
 		token = strtok( NULL, " ,.");	
 	}
 
+	speech.avgWordLength = alphabetCount/(speech.wordCount); 
+
+	//Average length of sentences (in words)
+	speech.avgSentLength = (float)speech.wordCount/speech.sentenceCount;
+
 }
 
 
@@ -163,11 +168,15 @@ int main( int argc, char *argv[]){
   	int repWordCount, demWordCount, othWordCount;
   	int repSingCount,demSingCount,othSingCount;
   	int repPlurCount,demPlurCount,othPlurCount;
+  	float repAvgWordLength, demAvgWordLength, othAvgWordLength;
+  	float repAvgSentLength, demAvgSentLength=0.0, othAvgSentLength;
 
   	//Averages
   	float repWordRatio, demWordRatio, othWordRatio;
   	float repSingUse, demSingUse, othSingUse;
   	float repPlurUse, demPlurUse, othPlurUse;
+  	float repAvgWordUse, demAvgWordUse, othAvgWordUse;
+  	float repAvgSentUse, demAvgSentUse, othAvgSentUse;
 
   	printTableHeaders(); //Prints table headers and lines
  
@@ -180,6 +189,8 @@ int main( int argc, char *argv[]){
 			repWordCount += speech.wordCount;
 			repSingCount += speech.singularCount;
 			repPlurCount += speech.pluralCount;
+			repAvgWordLength += speech.avgWordLength;
+			repAvgSentLength += speech.avgSentLength;
   		}
   		else if(fileName[i][1] == "D"){
   			SPEECH_NUM speech;
@@ -188,6 +199,9 @@ int main( int argc, char *argv[]){
 			demWordCount += speech.wordCount;
 			demSingCount += speech.singularCount;
 			demPlurCount += speech.pluralCount;
+			demAvgWordLength += speech.avgWordLength;
+			demAvgSentLength += speech.avgSentLength;
+
   		}
   		else if(fileName[i][1] == "O"){
   			SPEECH_NUM speech;
@@ -196,9 +210,12 @@ int main( int argc, char *argv[]){
 			othWordCount += speech.wordCount;
 			othSingCount += speech.singularCount;
 			othPlurCount += speech.pluralCount;
+			othAvgWordLength += speech.avgWordLength;
+			othAvgSentLength += speech.avgSentLength;
   		}
 	}
 
+	
 	//Average words in speeches
 	repWordRatio = (float)repWordCount/republicans;
 	demWordRatio = (float)demWordCount/democrats; 
@@ -214,11 +231,25 @@ int main( int argc, char *argv[]){
 	demPlurUse = (float)demPlurCount /democrats;
 	othPlurUse = (float)othPlurCount / others;
 
+	//Average of word length
+	repAvgWordUse = repAvgWordLength/republicans; 
+	demAvgWordUse = demAvgWordLength/democrats;
+	othAvgWordUse = othAvgWordLength/others;
+
+	//Average of sentence length
+	repAvgSentUse = repAvgSentLength/republicans; 
+	demAvgSentUse = demAvgSentLength/democrats;
+	othAvgSentUse = othAvgSentLength/others;
+
 
   	printf("Number of Speeches:\t\t\t\t\t%d\t\t %d\t     %d \n", republicans, democrats, others);
   	printf("Avg words in speeches:\t\t\t\t   %.2f\t    %.2f\t%.2f \n", repWordRatio, demWordRatio, othWordRatio);
   	printf("Average use of singular pronouns:\t\t     %.2f\t      %.2f\t  %.2f\n", repSingUse, demSingUse, othSingUse);
   	printf("Average use of plural pronouns:\t\t\t     %.2f\t      %.2f\t  %.2f\n", repPlurUse, demPlurUse, othPlurUse);
+  	printf("Ratio Singular/Plural:\t\t\t\t      %.2f\t       %.2f\t   %.2f \n", (repSingUse/repPlurUse), (demSingUse/demPlurUse),
+  		(othSingUse/othPlurUse));
+  	printf("Average length of words:\t\t\t      %.2f\t       %.2f\t   %.2f \n", repAvgWordUse, demAvgWordUse, othAvgWordUse);
+  	printf("Average length of sentences:\t\t\t     %.2f \t      %.2f\t  %.2f \n", repAvgSentUse, demAvgSentUse, othAvgSentUse);
   	
 
   return 0;
