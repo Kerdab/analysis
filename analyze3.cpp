@@ -1,3 +1,12 @@
+/*
+* Program #4: Analysis
+*
+* System: Linux, GCC.
+*
+* Authors: Abraheem Irheem, Sabine Ye 
+*
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -17,7 +26,11 @@ typedef struct speech_Num{
 
 void printTableHeaders(){
 
+	printf("\nAuthors: Abraheem Irheem, Sabine Ye\n");
+	printf("Labs: Thur 2pm and 12pm\n");
+	printf("Program #4: Analysis\n");
 	printf("\n");
+	
   	printf("Meaningful Data");
   	printf("\t\t\t\t\tRepublicans\t  Democrats\t Others\n");
     printf("===============\t\t\t\t\t-----------\t  ---------\t ------\n");

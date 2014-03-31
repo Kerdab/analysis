@@ -1,3 +1,12 @@
+/*
+* Program #4: Analysis
+*
+* System: Linux, GCC.
+*
+* Authors: Abraheem Irheem, Sabine Ye 
+*
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,23 +20,19 @@ FILE *Fp;
 
 void printTableHeaders(){
 
+	printf("\nAuthors: Abraheem Irheem, Sabine Ye\n");
+	printf("Labs: Thur 2pm and 12pm\n");
+	printf("Program #4: Analysis\n");
     printf("\n");
+    
   	printf("Speech\n");
-/*  	printf("YEAR  peace freedom  liberty  america  american  country  ");
-    printf("nation  ally  allies  people  defend  ");
-    printf("interest  interests  commitment  government  responsibility  ");
-    printf("constitution    slave  slavery  equal\n"); */
-    printf("YEAR   social  progressive  economy  tax  women  families  ");
-    printf("business  jobs  government  unemployment  ");
-    printf("god  work  future  leadership  \n");
+    printf("YEAR   peace  war  economy  slave  slavery  ");
+    printf("women  families  business  jobs  government  unemployment  ");
+    printf("taxes  work  future  leadership  \n");
 
-/*    printf("====  ----- -------  ------- --------  --------  ------   ");
-    printf("------  ----  ------  ------  ------  ");
-    printf("--------  ---------  ----------  ----------  --------------  ");
-    printf("------------    -----  -------  -----\n"); */
-    printf("====   ------  -----------  -------  ---  -----  --------  ");
-    printf("-------   ----  ----------  ------------  ");
-    printf("---  ----  ------  ----------  \n");
+    printf("====   -----  ---  -------  -----  -------  ");
+    printf("-----  --------  --------  ----  ----------  ------------  ");
+    printf("-----  ----  ------  ----------  \n");
 }
 
 
@@ -42,7 +47,7 @@ void counter( const char* fileName){
   int people=0, freedom=0, country=0, nation=0, defend=0, commitment=0;
   int liberty=0, ally=0, allies=0, interest=0, interests=0;
   int constitution=0, slave=0, slavery=0, equal=0;
-  int social=0, capitalism=0, economy=0, tax=0, progressive=0, women=0;
+  int social=0, capitalism=0, economy=0, taxes=0, progressive=0, women=0;
   int business=0, businesses=0, families=0, jobs=0, unemployment=0;
   int god=0, work=0, future=0;
   int leadership=0;
@@ -87,9 +92,7 @@ void counter( const char* fileName){
 
 	//Counts words
 	while( token != NULL){
-
-		if(strcmp( token, "peace") == 0)
-			peace++;
+		/*
 		if(strcmp( token, "freedom") == 0)
 			freedom++;
 		if(strcmp( token, "liberty") == 0)
@@ -97,11 +100,7 @@ void counter( const char* fileName){
 		if(strcmp( token, "america") == 0)
 			america++;
 		if(strcmp( token, "american") == 0)
-			american++;
-		if(strcmp( token, "war") == 0)
-			war++;
-		if(strcmp( token, "government") == 0)
-			government++;
+			american++;		
 		if(strcmp( token, "country") == 0)
 			country++;
 		if(strcmp( token, "nation") == 0)
@@ -124,10 +123,6 @@ void counter( const char* fileName){
 			commitment++;
 		if(strcmp( token, "constitution") == 0)
 			constitution++;
-		if(strcmp( token, "slave") == 0)
-			slave++;
-		if(strcmp( token, "slavery") == 0)
-			slavery++;
 		if(strcmp( token, "equal") == 0)
 			equal++;
 		if(strcmp( token, "social") == 0)
@@ -136,11 +131,22 @@ void counter( const char* fileName){
 			progressive++;
 		if(strcmp( token, "capitalism") == 0)
 			capitalism++;
+		*/
+
+		if(strcmp( token, "slave") == 0)
+			slave++;
+		if(strcmp( token, "slavery") == 0)
+			slavery++;
+		if(strcmp( token, "government") == 0)
+			government++;
 		if(strcmp( token, "economy") == 0)
 			economy++;
-		if(strcmp( token, "tax") == 0)
-			tax++;
-
+		if(strcmp( token, "taxes") == 0)
+			taxes++;
+		if(strcmp( token, "peace") == 0)
+			peace++;
+		if(strcmp( token, "war") == 0)
+			war++;
 		if(strcmp( token, "women") == 0)
 			women++;
 		if(strcmp( token, "families") == 0)
@@ -153,8 +159,6 @@ void counter( const char* fileName){
 			jobs++;
 		if(strcmp( token, "unemployment") == 0)
 			unemployment++;
-		if(strcmp( token, "god") == 0)
-			god++;
 		if(strcmp( token, "work") == 0)
 			work++;
 		if(strcmp( token, "future") == 0)
@@ -174,12 +178,12 @@ void counter( const char* fileName){
 	printf("\t\t %d\t\t%d\t%d\t%d\n",
 		constitution, slave, slavery, equal);
 	*/
-	printf("%s\t   %d\t\t%d\t %d     %d", speechYear,
-		social, progressive, economy, tax);
-	printf("    %2d\t      %2d\t%2d\t%d\t  %2d\t\t%2d",
+	printf("%s%6d %5d %5d %7d %7d ", speechYear,
+		peace, war, economy, slave, slavery);
+	printf("%8d %8d %8d %8d %8d %11d ",
 		women, families, business, jobs, government, unemployment);
-	printf("    %2d    %2d\t   %2d\t\t%2d\n",
-		god, work, future, leadership);
+	printf("%10d %6d %6d %6d\n",
+		taxes, work, future, leadership);
 
 	free( speech); //Frees allocated memory
 }

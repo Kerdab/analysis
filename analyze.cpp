@@ -1,3 +1,12 @@
+/*
+* Program #4: Analysis
+*
+* System: Linux, GCC.
+*
+* Authors: Abraheem Irheem, Sabine Ye 
+*
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,11 +27,16 @@ typedef struct speech_Num{
 
 void printTableHeaders(){
 
+	printf("\nAuthors: Abraheem Irheem, Sabine Ye\n");
+	printf("Labs: Thur 2pm and 12pm\n");
+	printf("Program #4: Analysis\n");
 	printf("\n");
+
   	printf("Speech\n");
   	printf("\t\t\t\t\t\tAvg Word \t  Avg Sentence\n");
   	printf("YEAR\tWords\tSentences\tParagraphs\t Length \t Length(in words)   \t");
     printf("Singular Pronouns\t Plural Pronouns\tRatio Singular/Plural\n");
+
     printf("====\t-----\t---------\t----------\t--------\t-----------------");
     printf("\t-----------------\t-----------------\t---------------------\n");
 }
@@ -33,7 +47,6 @@ void countAndPrintInfo(SPEECH_NUM speechNum[], int i, const char* fileName){
 	char *speech = NULL, ch, *token;
 	int k = 0, size = 0;
 	float alphabetCount=0.0, avgWordLength;
-	//const char *pronouns[] = {"I've", "I'll", "me", "my", "mine", "myself"};
 	char speechYear[4]; 
 	char filePath[25] = "./datafiles/"; 
 	float ratioSingToPlur;
